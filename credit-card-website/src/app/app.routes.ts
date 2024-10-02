@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from '../pages/home/home.component';
-import { CreditcardlistComponent } from '../pages/creditcardlist/creditcardlist.component';
-import { AddcreditComponent } from '../pages/addcredit/addcredit.component';
-import { TransactionslistComponent } from '../pages/transactionslist/transactionslist.component';
-import { TransactionsscreenComponent } from '../pages/transactionsscreen/transactionsscreen.component';
+import { HomeComponent } from './home/home.component';
+import { CreditcardlistComponent } from './creditcardlist/creditcardlist.component';
+import { AddcreditComponent } from './addcredit/addcredit.component';
+import { TransactionslistComponent } from './transactionslist/transactionslist.component';
+import { TransactionsscreenComponent } from './transactionsscreen/transactionsscreen.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent }, 

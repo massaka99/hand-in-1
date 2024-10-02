@@ -103,14 +103,13 @@ import {
   ɵɵinject,
   ɵɵinjectAttribute,
   ɵɵstyleProp
-} from "./chunk-MVH4IRTM.js";
+} from "./chunk-CZ56OGEE.js";
 import {
-  __async,
   __objRest,
   __spreadProps,
   __spreadValues,
   __toESM
-} from "./chunk-NQ4HTGF6.js";
+} from "./chunk-6DU2HRTW.js";
 
 // node_modules/@angular/common/fesm2022/common.mjs
 var _DOM = null;
@@ -4974,18 +4973,16 @@ function assertNoLoaderParamsWithoutLoader(dir, imageLoader) {
     console.warn(formatRuntimeError(2963, `${imgDirectiveDetails(dir.ngSrc)} the \`loaderParams\` attribute is present but no image loader is configured (i.e. the default one is being used), which means that the loaderParams data will not be consumed and will not affect the URL. To fix this, provide a custom loader or remove the \`loaderParams\` attribute from the image.`));
   }
 }
-function assetPriorityCountBelowThreshold(appRef) {
-  return __async(this, null, function* () {
-    if (IMGS_WITH_PRIORITY_ATTR_COUNT === 0) {
-      IMGS_WITH_PRIORITY_ATTR_COUNT++;
-      yield whenStable(appRef);
-      if (IMGS_WITH_PRIORITY_ATTR_COUNT > PRIORITY_COUNT_THRESHOLD) {
-        console.warn(formatRuntimeError(2966, `NgOptimizedImage: The "priority" attribute is set to true more than ${PRIORITY_COUNT_THRESHOLD} times (${IMGS_WITH_PRIORITY_ATTR_COUNT} times). Marking too many images as "high" priority can hurt your application's LCP (https://web.dev/lcp). "Priority" should only be set on the image expected to be the page's LCP element.`));
-      }
-    } else {
-      IMGS_WITH_PRIORITY_ATTR_COUNT++;
+async function assetPriorityCountBelowThreshold(appRef) {
+  if (IMGS_WITH_PRIORITY_ATTR_COUNT === 0) {
+    IMGS_WITH_PRIORITY_ATTR_COUNT++;
+    await whenStable(appRef);
+    if (IMGS_WITH_PRIORITY_ATTR_COUNT > PRIORITY_COUNT_THRESHOLD) {
+      console.warn(formatRuntimeError(2966, `NgOptimizedImage: The "priority" attribute is set to true more than ${PRIORITY_COUNT_THRESHOLD} times (${IMGS_WITH_PRIORITY_ATTR_COUNT} times). Marking too many images as "high" priority can hurt your application's LCP (https://web.dev/lcp). "Priority" should only be set on the image expected to be the page's LCP element.`));
     }
-  });
+  } else {
+    IMGS_WITH_PRIORITY_ATTR_COUNT++;
+  }
 }
 function assertPlaceholderDimensions(dir, imgElement) {
   const computedStyle = window.getComputedStyle(imgElement);
@@ -6090,113 +6087,111 @@ var FetchBackend = class _FetchBackend {
       return () => aborter.abort();
     });
   }
-  doRequest(request, signal, observer) {
-    return __async(this, null, function* () {
-      const init = this.createRequestInit(request);
-      let response;
+  async doRequest(request, signal, observer) {
+    const init = this.createRequestInit(request);
+    let response;
+    try {
+      const fetchPromise = this.ngZone.runOutsideAngular(() => this.fetchImpl(request.urlWithParams, __spreadValues({
+        signal
+      }, init)));
+      silenceSuperfluousUnhandledPromiseRejection(fetchPromise);
+      observer.next({
+        type: HttpEventType.Sent
+      });
+      response = await fetchPromise;
+    } catch (error) {
+      observer.error(new HttpErrorResponse({
+        error,
+        status: error.status ?? 0,
+        statusText: error.statusText,
+        url: request.urlWithParams,
+        headers: error.headers
+      }));
+      return;
+    }
+    const headers = new HttpHeaders(response.headers);
+    const statusText = response.statusText;
+    const url = getResponseUrl$1(response) ?? request.urlWithParams;
+    let status = response.status;
+    let body = null;
+    if (request.reportProgress) {
+      observer.next(new HttpHeaderResponse({
+        headers,
+        status,
+        statusText,
+        url
+      }));
+    }
+    if (response.body) {
+      const contentLength = response.headers.get("content-length");
+      const chunks = [];
+      const reader = response.body.getReader();
+      let receivedLength = 0;
+      let decoder;
+      let partialText;
+      const reqZone = typeof Zone !== "undefined" && Zone.current;
+      await this.ngZone.runOutsideAngular(async () => {
+        while (true) {
+          const {
+            done,
+            value
+          } = await reader.read();
+          if (done) {
+            break;
+          }
+          chunks.push(value);
+          receivedLength += value.length;
+          if (request.reportProgress) {
+            partialText = request.responseType === "text" ? (partialText ?? "") + (decoder ??= new TextDecoder()).decode(value, {
+              stream: true
+            }) : void 0;
+            const reportProgress = () => observer.next({
+              type: HttpEventType.DownloadProgress,
+              total: contentLength ? +contentLength : void 0,
+              loaded: receivedLength,
+              partialText
+            });
+            reqZone ? reqZone.run(reportProgress) : reportProgress();
+          }
+        }
+      });
+      const chunksAll = this.concatChunks(chunks, receivedLength);
       try {
-        const fetchPromise = this.ngZone.runOutsideAngular(() => this.fetchImpl(request.urlWithParams, __spreadValues({
-          signal
-        }, init)));
-        silenceSuperfluousUnhandledPromiseRejection(fetchPromise);
-        observer.next({
-          type: HttpEventType.Sent
-        });
-        response = yield fetchPromise;
+        const contentType = response.headers.get("Content-Type") ?? "";
+        body = this.parseBody(request, chunksAll, contentType);
       } catch (error) {
         observer.error(new HttpErrorResponse({
           error,
-          status: error.status ?? 0,
-          statusText: error.statusText,
-          url: request.urlWithParams,
-          headers: error.headers
+          headers: new HttpHeaders(response.headers),
+          status: response.status,
+          statusText: response.statusText,
+          url: getResponseUrl$1(response) ?? request.urlWithParams
         }));
         return;
       }
-      const headers = new HttpHeaders(response.headers);
-      const statusText = response.statusText;
-      const url = getResponseUrl$1(response) ?? request.urlWithParams;
-      let status = response.status;
-      let body = null;
-      if (request.reportProgress) {
-        observer.next(new HttpHeaderResponse({
-          headers,
-          status,
-          statusText,
-          url
-        }));
-      }
-      if (response.body) {
-        const contentLength = response.headers.get("content-length");
-        const chunks = [];
-        const reader = response.body.getReader();
-        let receivedLength = 0;
-        let decoder;
-        let partialText;
-        const reqZone = typeof Zone !== "undefined" && Zone.current;
-        yield this.ngZone.runOutsideAngular(() => __async(this, null, function* () {
-          while (true) {
-            const {
-              done,
-              value
-            } = yield reader.read();
-            if (done) {
-              break;
-            }
-            chunks.push(value);
-            receivedLength += value.length;
-            if (request.reportProgress) {
-              partialText = request.responseType === "text" ? (partialText ?? "") + (decoder ??= new TextDecoder()).decode(value, {
-                stream: true
-              }) : void 0;
-              const reportProgress = () => observer.next({
-                type: HttpEventType.DownloadProgress,
-                total: contentLength ? +contentLength : void 0,
-                loaded: receivedLength,
-                partialText
-              });
-              reqZone ? reqZone.run(reportProgress) : reportProgress();
-            }
-          }
-        }));
-        const chunksAll = this.concatChunks(chunks, receivedLength);
-        try {
-          const contentType = response.headers.get("Content-Type") ?? "";
-          body = this.parseBody(request, chunksAll, contentType);
-        } catch (error) {
-          observer.error(new HttpErrorResponse({
-            error,
-            headers: new HttpHeaders(response.headers),
-            status: response.status,
-            statusText: response.statusText,
-            url: getResponseUrl$1(response) ?? request.urlWithParams
-          }));
-          return;
-        }
-      }
-      if (status === 0) {
-        status = body ? HTTP_STATUS_CODE_OK : 0;
-      }
-      const ok = status >= 200 && status < 300;
-      if (ok) {
-        observer.next(new HttpResponse({
-          body,
-          headers,
-          status,
-          statusText,
-          url
-        }));
-        observer.complete();
-      } else {
-        observer.error(new HttpErrorResponse({
-          error: body,
-          headers,
-          status,
-          statusText,
-          url
-        }));
-      }
-    });
+    }
+    if (status === 0) {
+      status = body ? HTTP_STATUS_CODE_OK : 0;
+    }
+    const ok = status >= 200 && status < 300;
+    if (ok) {
+      observer.next(new HttpResponse({
+        body,
+        headers,
+        status,
+        statusText,
+        url
+      }));
+      observer.complete();
+    } else {
+      observer.error(new HttpErrorResponse({
+        error: body,
+        headers,
+        status,
+        statusText,
+        url
+      }));
+    }
   }
   parseBody(request, binContent, contentType) {
     switch (request.responseType) {
@@ -9185,4 +9180,4 @@ export {
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-DZEB7DRI.js.map
+//# sourceMappingURL=chunk-4SD4JQMY.js.map
