@@ -1,34 +1,58 @@
 {
-  "hash": "e89e314a",
-  "configHash": "a9d0d2ea",
-  "lockfileHash": "74a9dfcc",
-  "browserHash": "a7c5cbaf",
+  "hash": "7237c172",
+  "configHash": "87041dc3",
+  "lockfileHash": "f703e5f6",
+  "browserHash": "408a6ef2",
   "optimized": {
+    "@angular/common": {
+      "src": "../../../../../node_modules/@angular/common/fesm2022/common.mjs",
+      "file": "@angular_common.js",
+      "fileHash": "f99f2fbf",
+      "needsInterop": false
+    },
+    "@angular/common/http": {
+      "src": "../../../../../node_modules/@angular/common/fesm2022/http.mjs",
+      "file": "@angular_common_http.js",
+      "fileHash": "9924d5ce",
+      "needsInterop": false
+    },
     "@angular/core": {
       "src": "../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "7dca583d",
+      "fileHash": "820eb80a",
+      "needsInterop": false
+    },
+    "@angular/forms": {
+      "src": "../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
+      "file": "@angular_forms.js",
+      "fileHash": "d9a26351",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "3485489e",
+      "fileHash": "62f00c94",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "771d0b9b",
+      "fileHash": "fe451d11",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-SSTI44JY": {
-      "file": "chunk-SSTI44JY.js"
+    "chunk-E4QBKB4J": {
+      "file": "chunk-E4QBKB4J.js"
     },
-    "chunk-3BZBJTBT": {
-      "file": "chunk-3BZBJTBT.js"
+    "chunk-ES4QJMP4": {
+      "file": "chunk-ES4QJMP4.js"
+    },
+    "chunk-B4KDRKYN": {
+      "file": "chunk-B4KDRKYN.js"
+    },
+    "chunk-GC5VBXNX": {
+      "file": "chunk-GC5VBXNX.js"
     }
   }
 }
