@@ -12,7 +12,7 @@
     "skipLibCheck": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "sourceMap": true, // Enable source maps for debugging.
+    "sourceMap": true,
     "declaration": false,
     "experimentalDecorators": true,
     "moduleResolution": "bundler",

@@ -1,17 +1,17 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { CreditcardlistComponent } from './creditcardlist/creditcardlist.component';
-import { AddcreditComponent } from './addcredit/addcredit.component';
-import { TransactionslistComponent } from './transactionslist/transactionslist.component';
-import { TransactionsscreenComponent } from './transactionsscreen/transactionsscreen.component';
-import { CreditcarddetailsscreenComponent } from './creditcarddetailsscreen/creditcarddetailsscreen.component';
+import { CreditcardlistComponent } from './credit-card-list/credit-card-list.component';
+import { AddcreditcardComponent } from './add-credit-card/add-credit-card.component';
+import { TransactionListComponent } from './transaction-list/transaction-list.component';
+import { TransactionsComponent } from './transactions/transactions.component';
+import { CreditCardDetailsComponent } from './credit-card-details/credit-card-details.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent }, 
-  { path: 'creditcardlist', component: CreditcardlistComponent },
-  { path: 'addcredit', component: AddcreditComponent },
-  { path: 'transactionslist', component: TransactionslistComponent },
-  { path: 'transactionsscreen', component: TransactionsscreenComponent },
-  { path: 'creditcarddetails', component: CreditcarddetailsscreenComponent }
+  { path: 'credit-card-list', component: CreditcardlistComponent },
+  { path: 'add-credit-card', component: AddcreditcardComponent },
+  { path: 'transaction-list', component: TransactionListComponent },
+  { path: 'transactions', component: TransactionsComponent },
+  { path: 'credit-card-details', component: CreditCardDetailsComponent }
 ];
 

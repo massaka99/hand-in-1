@@ -1,0 +1,110 @@
+.transactions-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #f0f4f7;
+    border-radius: 12px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    color: #003087;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+  }
+  
+  .filter-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+  
+  .filter-section input {
+    padding: 12px;
+    width: 250px;
+    margin-right: 12px;
+    border: 1px solid #003087;
+    border-radius: 6px;
+    font-size: 1rem;
+  }
+  
+  .filter-section button {
+    padding: 12px 20px;
+    background-color: #0070ba;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .filter-section button:hover {
+    background-color: #003087;
+  }
+  
+  .transactions-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    background-color: #fff;
+  }
+  
+  .transactions-table th,
+  .transactions-table td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+    font-size: 1rem;
+  }
+  
+  .transactions-table th {
+    background-color: #003087;
+    color: #fff;
+  }
+  
+  .transactions-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .transactions-table tr:hover {
+    background-color: #e6f0fb;
+  }
+  
+  .add-transaction-btn {
+    display: block;
+    margin: 30px auto;
+    padding: 15px 30px;
+    background-color: #0070ba;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .add-transaction-btn:hover {
+    background-color: #003087;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .transactions-container {
+        padding: 15px;
+    }
+    
+    .filter-section {
+        flex-direction: column;
+    }
+    
+    .filter-section input {
+        margin-bottom: 12px;
+        width: 100%;
+    }
+  
+    .add-transaction-btn {
+        width: 100%;
+    }
+  }
