@@ -1,19 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { TransactionsService } from '../services/transactions.service';
+import { HttpClientModule } from '@angular/common/http'; 
+
 
 @Component({
   selector: 'app-addcredit',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule], 
+  imports: [ReactiveFormsModule, CommonModule, HttpClientModule], 
   templateUrl: './addcredit.component.html',
-  styleUrls: ['./addcredit.component.css']
+  styleUrls: ['./addcredit.component.css'],
+  providers: [TransactionsService]  
+
 })
 export class AddcreditComponent implements OnInit {
 
   addCreditForm!: FormGroup;  
 
-  constructor(private fb: FormBuilder) {}
+  submissionSuccess: boolean = false;
+  submissionError: boolean = false;
+
+  constructor(private fb: FormBuilder, private transactionsService: TransactionsService) {}
 
   ngOnInit(): void {
     this.addCreditForm = this.fb.group({
@@ -58,9 +66,23 @@ export class AddcreditComponent implements OnInit {
 
   onSubmit() {
     if (this.addCreditForm.valid) {
-      console.log('Form Submitted', this.addCreditForm.value);  
+      const cardData = this.addCreditForm.value;
+
+      // Post the form data to the server using the TransactionsService
+      this.transactionsService.createCreditCard(cardData).subscribe({
+        next: (response) => {
+          console.log('Credit Card added successfully:', response);
+          this.submissionSuccess = true;  // Show success message
+          this.submissionError = false;   // Hide error message
+        },
+        error: (error) => {
+          console.error('Error adding Credit Card:', error);
+          this.submissionError = true;   // Show error message
+          this.submissionSuccess = false; // Hide success message
+        }
+      });
     } else {
-      console.log('Form is invalid');  
+      console.log('Form is invalid');
     }
   }
 }
