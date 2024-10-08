@@ -11,7 +11,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let transaction of transactions">
-            <td>{{ transaction.credit_card.CreditCard }}</td> <!-- Assuming 'number' is the card number -->
+            <td>{{ transaction.credit_card.card_number }}</td> <!-- Assuming 'number' is the card number -->
             <td>{{ transaction.amount }}</td>
             <td>{{ transaction.currency }}</td>
             <td>{{ transaction.comment }}</td>

@@ -1,8 +1,6 @@
 <div class="transactions-container">
     <h1>Transactions</h1>
 
-    <!-- Load List Button (Manual Refresh) -->
-    <button class="load-list-btn" (click)="loadTransactions()">Load List</button>
 
     <!-- Add Transaction Form -->
     <div *ngIf="isAddFormVisible" class="add-transaction-form">
@@ -16,13 +14,18 @@
     </div>
 
     <!-- Toggle Add Transaction Button -->
-    <button class="add-transaction-btn" (click)="toggleAddForm()">
+    <button class="add-transaction-btn">
         {{ isAddFormVisible ? 'Cancel' : 'Add Transaction' }}
     </button>
 
-    <!-- Transaction List Component -->
-    <app-transaction-list
+    <button class="hide-list-btn" (click)="toggleTransactionList()">
+        {{ isListVisible ? 'Hide List' : 'Show List' }}
+    </button>
+
+    <!-- Transaction List -->
+    <app-transaction-list *ngIf="isListVisible" 
       [transactions]="filteredTransactions"
       (onRemoveTransaction)="removeTransaction($event)">
     </app-transaction-list>
+
 </div>
