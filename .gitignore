@@ -4,6 +4,9 @@ node_modules/
 # Logs
 logs
 *.log
+npm-debug.log*
+yarn-error.log
+testem.log
 
 # Runtime Data
 *.pid
@@ -12,39 +15,23 @@ logs
 
 # Coverage directory used by tools like Istanbul
 coverage/
+frontend/coverage/
+
+# Dist and Temp
+dist/
+tmp/
+cache/
+.cache/
+out-tsc/
+bazel-out/
+.sass-cache
 
 # Dependency directories
 jspm_packages/
-
-# Typescript v1 declaration files
 typings/
 
-# dotenv environment variables file
-.env
-
-# Ignore the build directory
-dist/
-
-# MacOS metadata files
-.DS_Store
-
-# Temporary files created by your text editor
-*.tmp
-*.swp
-*.swo
-
 # Compiled binary addons
-build/Release
-
-# Temporary files
-*.temp
-*.sw[a-z]
-*.bak
-*.BAK
-
-# Coverage reports
-lcov.info
-.coverage/
+build/Release/
 
 # Parcel-bundler cache
 .cache
@@ -52,35 +39,73 @@ lcov.info
 # IDE settings
 .idea/
 .vscode/
+.project
+.classpath
+.history/
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+*.vscode/
 
-# nuxt build output
-.nuxt
+# Only keep necessary VSCode settings
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 
-# Next.js build output
-.next
+# MacOS and System Files
+.DS_Store
+Thumbs.db
 
-# Npm debug logs
-npm-debug.log*
+# Miscellaneous
+connect.lock
+libpeerconnection.log
 
-# Yarn integrity file
-.yarn-integrity
+# Temporary files created by your text editor or IDE
+*.tmp
+*.swp
+*.swo
+*.sw[a-z]
+*.bak
+*.BAK
+*.un~
+Session.vim
+.netrwhist
 
-# grunt intermediate storage
-.grunt
+# Optional REPL history
+.node_repl_history
 
-# local env files
-.env.local
-.env.*.local
-
-# vim swap files
+# Vim swap files
 *.sw[a-p]
 *.un~
 Session.vim
 .netrwhist
 *-mini
 
-# sass cache
-.sass-cache
+# Local environment files
+.env
+.env.local
+.env.*.local
 
-# Optional REPL history
-.node_repl_history!/frontend/coverage/
+# Next.js and Nuxt.js build output
+.nuxt
+.next
+
+# Typescript
+tsconfig.json
+tsconfig.spec.json
+
+# Bazel output (only if used)
+bazel-out
+
+# Angular build output
+.angular
+.angular/cache
+
+# Hand-in specific
+hand-in-1.md
+
+# Ignore compiled assets and chunks
+*.chunk.js
+*.chunk.js.map
