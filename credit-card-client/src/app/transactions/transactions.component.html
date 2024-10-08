@@ -1,11 +1,8 @@
 <div class="transactions-container">
     <h1>Transactions</h1>
 
-    <!-- Filter Section -->
-    <div class="filter-section">
-        <input type="text" placeholder="Filter by card number" [(ngModel)]="filterCardNumber">
-        <button (click)="filterTransactions()">Filter</button>
-    </div>
+    <!-- Load List Button (Manual Refresh) -->
+    <button class="load-list-btn" (click)="loadTransactions()">Load List</button>
 
     <!-- Add Transaction Form -->
     <div *ngIf="isAddFormVisible" class="add-transaction-form">
