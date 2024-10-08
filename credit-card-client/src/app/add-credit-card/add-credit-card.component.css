@@ -36,7 +36,7 @@
     border: 1px solid #c1c1c1;
     border-radius: 1px;
     font-size: 14px;
-    background-color: #f7f7f7; 
+    background-color: #d3d3d3; 
     color: #000000; 
   }
   
@@ -75,7 +75,7 @@
   }
   
   button.addButton:disabled {
-    background-color: #c1c1c1;
+    background-color: #3d3d3d;
     cursor: not-allowed;
   }
   

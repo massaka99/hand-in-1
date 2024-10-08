@@ -66,18 +66,17 @@ export class AddcreditcardComponent implements OnInit {
     if (this.addCreditForm.valid) {
       const cardData = this.addCreditForm.value;
 
-      // Post the form data to the server using the CreditCardService
       this.CreditCardService.createCreditCard(cardData).subscribe({
         next: (response) => {
           console.log('Credit Card added successfully:', response);
           this.addCreditForm.reset();
-          this.submissionSuccess = true;  // Show success message
-          this.submissionError = false;   // Hide error message
+          this.submissionSuccess = true;  
+          this.submissionError = false;  
         },
         error: (error) => {
           console.error('Error adding Credit Card:', error);
-          this.submissionError = true;   // Show error message
-          this.submissionSuccess = false; // Hide success message
+          this.submissionError = true;   
+          this.submissionSuccess = false; 
         }
       });
     } else {
