@@ -1,12 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-transaction-list',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './transaction-list.component.html',
-  styleUrl: './transaction-list.component.css'
+  styleUrls: ['./transaction-list.component.css']
 })
 export class TransactionListComponent {
+  @Input() transactions: any[] = [];
+  @Output() onRemoveTransaction = new EventEmitter<any>();
 
+  // Emit event to parent when removing a transaction
+  remove(transaction: any) {
+    this.onRemoveTransaction.emit(transaction);
+  }
 }

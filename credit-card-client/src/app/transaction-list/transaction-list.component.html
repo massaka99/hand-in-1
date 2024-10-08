@@ -1,1 +1,22 @@
-<p>transaction-list works!</p>
+<table class="transactions-table">
+    <thead>
+        <tr>
+            <th>Credit Card</th>
+            <th>Amount</th>
+            <th>Currency</th>
+            <th>Comment</th>
+            <th>Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let transaction of transactions">
+            <td>{{ transaction.credit_card.CreditCard }}</td> <!-- Assuming 'number' is the card number -->
+            <td>{{ transaction.amount }}</td>
+            <td>{{ transaction.currency }}</td>
+            <td>{{ transaction.comment }}</td>
+            <td>{{ transaction.date | date }}</td>
+            <td><button (click)="remove(transaction)">Remove</button></td>
+        </tr>
+    </tbody>
+</table>
