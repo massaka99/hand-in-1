@@ -1,37 +1,86 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TransactionListComponent } from '../transaction-list/transaction-list.component'; 
+import { CreditCardService } from '../services/services/credit-card.service';
 
 @Component({
   selector: 'app-transactionsscreen',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TransactionListComponent],
   templateUrl: './transactions.component.html',
   styleUrls: ['./transactions.component.css'],
 })
-export class TransactionsComponent {
-  transactions = [
-    { credit_card: '1234567', amount: 50, currency: 'USD', comment: 'Lunch', date: new Date() },
-    { credit_card: '7654321', amount: 100, currency: 'EUR', comment: 'Office Supplies', date: new Date() },
-  ];
-
-  filteredTransactions = [...this.transactions];
+export class TransactionsComponent implements OnInit {
+  transactions: any[] = [];
+  filteredTransactions: any[] = [];
   filterCardNumber = '';
+  
+  // For adding a new transaction
+  newTransaction = {
+    credit_card: '',
+    amount: 0,
+    currency: '',
+    comment: '',
+    date: ''
+  };
+  isAddFormVisible = false; // Toggles the add form visibility
 
-  // Add 
+  constructor(private creditCardService: CreditCardService) {}
+
+  ngOnInit() {
+    this.loadTransactions(); // Load transactions on component init
+  }
+
+  // Load transactions from the backend
+  loadTransactions() {
+    this.creditCardService.getTransactions().subscribe({
+      next: (data) => {
+        this.transactions = data;
+        this.filteredTransactions = [...this.transactions];
+      },
+      error: (error) => {
+        console.error('Error fetching transactions:', error);
+      }
+    });
+  }
+
+  // Add a new transaction
   addTransaction() {
-    alert('Add transaction functionality to be implemented');
+    this.creditCardService.addTransaction(this.newTransaction).subscribe({
+      next: (response) => {
+        this.transactions.push(response); // Add new transaction to the list
+        this.filterTransactions(); // Refresh the filtered list
+        this.isAddFormVisible = false; // Hide the form after adding
+      },
+      error: (error) => {
+        console.error('Error adding transaction:', error);
+      }
+    });
   }
 
-  // Remove 
+  // Remove a transaction
   removeTransaction(transaction: any) {
-    alert(`Remove transaction with card ${transaction.credit_card}`);
+    this.creditCardService.deleteTransaction(transaction.id).subscribe({
+      next: () => {
+        this.transactions = this.transactions.filter(t => t.id !== transaction.id);
+        this.filterTransactions();  // Apply filter after removal
+      },
+      error: (error) => {
+        console.error('Error removing transaction:', error);
+      }
+    });
   }
 
-  // Filter 
   filterTransactions() {
     this.filteredTransactions = this.transactions.filter(t =>
-      t.credit_card.includes(this.filterCardNumber)
+      t.credit_card.number.includes(this.filterCardNumber) // Assuming 'number' is the correct field
     );
+  }
+  
+
+  // Toggle the add form visibility
+  toggleAddForm() {
+    this.isAddFormVisible = !this.isAddFormVisible;
   }
 }
