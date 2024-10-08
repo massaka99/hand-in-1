@@ -59,8 +59,7 @@
             </div>
         </div>
 
-        <button type="submit" class="addButton">Add Card</button>
-    </form>
+        <button type="submit" [disabled]="addCreditForm.invalid" class="addButton">Add Card</button>    </form>
       <!-- Success message -->
   <div *ngIf="submissionSuccess" class="alert alert-success">
     Credit card added successfully!

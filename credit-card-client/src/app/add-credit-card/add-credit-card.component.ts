@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { CreditCardService } from '../services/services/credit-card.service';
 import { HttpClientModule } from '@angular/common/http'; 
 
-
 @Component({
   selector: 'app-addcredit',
   standalone: true,
@@ -12,7 +11,6 @@ import { HttpClientModule } from '@angular/common/http';
   templateUrl: './add-credit-card.component.html',
   styleUrls: ['./add-credit-card.component.css'],
   providers: [CreditCardService]  
-
 })
 export class AddcreditcardComponent implements OnInit {
 
@@ -34,33 +32,33 @@ export class AddcreditcardComponent implements OnInit {
           Validators.pattern('^[0-9]*$')
         ]
       ],
-      csc_code: 
-      [
+      csc_code: [
         '', 
         [
           Validators.required, 
           Validators.pattern('^[0-9]{3}$')
         ]
       ],
-      cardholder_name: 
-      [
+      cardholder_name: [
         '', 
         Validators.required
       ],
-      expiration_date_month: 
-      [
+      expiration_date_month: [
         '', 
-        Validators.required, 
-        Validators.min(1), 
-        Validators.max(12)
+        [
+          Validators.required, 
+          Validators.min(1), 
+          Validators.max(12)
+        ]
       ],
-      expiration_date_year: 
-      [
+      expiration_date_year: [
         '', 
         Validators.required
       ],
-      issuer: 
-      ['', Validators.required]
+      issuer: [
+        '', 
+        Validators.required
+      ]
     });
   }
 
@@ -68,10 +66,11 @@ export class AddcreditcardComponent implements OnInit {
     if (this.addCreditForm.valid) {
       const cardData = this.addCreditForm.value;
 
-      // Post the form data to the server using the TransactionsService
+      // Post the form data to the server using the CreditCardService
       this.CreditCardService.createCreditCard(cardData).subscribe({
         next: (response) => {
           console.log('Credit Card added successfully:', response);
+          this.addCreditForm.reset();
           this.submissionSuccess = true;  // Show success message
           this.submissionError = false;   // Hide error message
         },
