@@ -1,74 +1,43 @@
 {
-<<<<<<< Updated upstream
-  "hash": "e36c4304",
-  "configHash": "fa753fa6",
-  "lockfileHash": "f8ec2409",
-  "browserHash": "f06145a8",
-=======
   "hash": "376f4862",
   "configHash": "473a72df",
   "lockfileHash": "f8ec2409",
   "browserHash": "26027304",
->>>>>>> Stashed changes
   "optimized": {
     "@angular/common": {
       "src": "../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-<<<<<<< Updated upstream
-      "fileHash": "a2b2c740",
-=======
       "fileHash": "e01d2600",
->>>>>>> Stashed changes
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-<<<<<<< Updated upstream
-      "fileHash": "3ae7b078",
-=======
       "fileHash": "216bd48a",
->>>>>>> Stashed changes
       "needsInterop": false
     },
     "@angular/forms": {
       "src": "../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
       "file": "@angular_forms.js",
-<<<<<<< Updated upstream
-      "fileHash": "7033256d",
-=======
       "fileHash": "50f75b37",
->>>>>>> Stashed changes
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-<<<<<<< Updated upstream
-      "fileHash": "8e3b8315",
-=======
       "fileHash": "dfdeb018",
->>>>>>> Stashed changes
       "needsInterop": false
     },
     "@angular/platform-server": {
       "src": "../../../../../node_modules/@angular/platform-server/fesm2022/platform-server.mjs",
       "file": "@angular_platform-server.js",
-<<<<<<< Updated upstream
-      "fileHash": "96410728",
-=======
       "fileHash": "501bf46b",
->>>>>>> Stashed changes
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-<<<<<<< Updated upstream
-      "fileHash": "4208060e",
-=======
       "fileHash": "f5e7e85a",
->>>>>>> Stashed changes
       "needsInterop": false
     }
   },
