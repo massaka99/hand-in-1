@@ -6,11 +6,10 @@ html, body {
 .container { 
     display: flex;
     flex-direction: column; 
-    height: 100vh; /* Ensure the container takes full viewport height */
 }
 
 .credit-container {
-    padding: 20px;
+    padding: 2px;
     font-size: large;
     font-family: Arial, sans-serif;
     flex: 0 0 auto; 
@@ -18,12 +17,11 @@ html, body {
 
 .background-container { 
     padding: 20px;
-    background-image: url('https://onlinepos.dk/wp-content/uploads/2022/02/MobilePay-StandardLogo.png'); 
     background-position: center; 
     background-repeat: no-repeat;
-    background-size: contain; /* Adjust this as needed */
-    height: 100px; /* Adjust height as necessary */
-    flex-shrink: 0; /* Prevent the image container from shrinking */
+    background-size: contain; 
+    height: 100px; 
+    flex-shrink: 0; 
 }
 
 h2 {
@@ -63,15 +61,16 @@ h2 {
 
 .card-list li {
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #003087;
     margin: 10px 0;
     border-radius: 5px;
-    cursor: pointer;  /* Indicate that this is clickable */
+    cursor: pointer;  
     transition: background-color 0.3s;
+    background-color: rgb(255, 255, 255);
 }
 
 .card-list li:hover {
-    background-color: #e0f0ff;  /* Highlight on hover */
+    background-color: #818b94;  
 }
 
 .details-btn {
