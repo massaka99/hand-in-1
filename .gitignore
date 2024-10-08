@@ -1,8 +1,6 @@
 # Node modules
 node_modules/
 
-/node_modules
-
 # Logs
 logs
 *.log
@@ -94,19 +92,12 @@ Session.vim
 .nuxt
 .next
 
-# Typescript
-tsconfig.json
-tsconfig.spec.json
-
 # Bazel output (only if used)
 bazel-out
 
 # Angular build output
 .angular
 .angular/cache
-
-# Hand-in specific
-hand-in-1.md
 
 # Ignore compiled assets and chunks
 *.chunk.js
