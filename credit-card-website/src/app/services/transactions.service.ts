@@ -24,4 +24,9 @@ export class TransactionsService {
   deleteTransaction(transactionId: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/transactions/${transactionId}`);
   }
+
+  // Add a new Card
+  createCreditCard(cardData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/cards`, cardData);
+  }
 }
