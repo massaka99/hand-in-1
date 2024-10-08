@@ -1,1 +1,23 @@
-<p>creditcardlist works!</p>
+<div class="container"> 
+    <div class="credit-container">
+        <h2>Credit Card List</h2>
+        
+        <div class="filter-section">
+            <input type="text" placeholder="Filter by cardholder name..." [(ngModel)]="filterText" />
+            <button (click)="filterCards()">Filter</button>
+        </div>
+
+        <ul class="card-list">
+            <li *ngFor="let card of creditCards" (click)="onCardClick(card.card_number)">
+                <strong>Cardholder:</strong> {{ card.cardholder_name }} <br />
+                <strong>Issuer:</strong> {{ card.issuer }} <br />
+                <strong>Card Number:</strong> {{ card.card_number }}
+                <button class="details-btn" (click)="viewDetails(card.card_number)">Details</button>
+            </li>
+        </ul>
+    </div>
+
+    <div class="background-container"> 
+        
+    </div>
+</div>

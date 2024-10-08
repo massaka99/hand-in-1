@@ -1,0 +1,86 @@
+html, body {
+    height: 100%; 
+    margin: 0; 
+}
+
+.container { 
+    display: flex;
+    flex-direction: column; 
+    height: 100vh; /* Ensure the container takes full viewport height */
+}
+
+.credit-container {
+    padding: 20px;
+    font-size: large;
+    font-family: Arial, sans-serif;
+    flex: 0 0 auto; 
+}
+
+.background-container { 
+    padding: 20px;
+    background-image: url('https://onlinepos.dk/wp-content/uploads/2022/02/MobilePay-StandardLogo.png'); 
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-size: contain; /* Adjust this as needed */
+    height: 100px; /* Adjust height as necessary */
+    flex-shrink: 0; /* Prevent the image container from shrinking */
+}
+
+h2 {
+    color: #003087;
+    text-align: center;
+}
+
+.filter-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.filter-section input {
+    padding: 10px;
+    width: 200px;
+    font-size: medium;
+    margin-right: 10px;
+    border: 1px solid #003087;
+    border-radius: 5px;
+}
+
+.filter-section button {
+    padding: 10px;
+    background-color: #0070ba;
+    font-size: larger;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.card-list {
+    list-style-type: none;  
+    padding: 0; 
+    margin: 10px;
+}
+
+.card-list li {
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;  /* Indicate that this is clickable */
+    transition: background-color 0.3s;
+}
+
+.card-list li:hover {
+    background-color: #e0f0ff;  /* Highlight on hover */
+}
+
+.details-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #0070ba;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

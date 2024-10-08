@@ -1,4 +1,3 @@
-import { createRequire } from 'module';const require = createRequire(import.meta.url);
 import {
   ApplicationRef,
   Attribute,
@@ -31,6 +30,8 @@ import {
   TemplateRef,
   Version,
   ViewContainerRef,
+  __spreadProps,
+  __spreadValues,
   booleanAttribute,
   createNgModule,
   findLocaleData,
@@ -59,13 +60,9 @@ import {
   ɵɵinject,
   ɵɵinjectAttribute,
   ɵɵstyleProp
-} from "./chunk-CZ56OGEE.js";
-import {
-  __spreadProps,
-  __spreadValues
-} from "./chunk-6DU2HRTW.js";
+} from "./chunk-UWZB2GPS.js";
 
-// node_modules/@angular/common/fesm2022/common.mjs
+// ../../node_modules/@angular/common/fesm2022/common.mjs
 var _DOM = null;
 function getDOM() {
   return _DOM;
@@ -5137,4 +5134,4 @@ export {
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-GOHLOCYC.js.map
+//# sourceMappingURL=chunk-4PKH5SQV.js.map
