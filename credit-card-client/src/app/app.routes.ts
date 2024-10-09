@@ -12,6 +12,6 @@ export const routes: Routes = [
   { path: 'add-credit-card', component: AddcreditcardComponent },
   { path: 'transaction-list', component: TransactionListComponent },
   { path: 'transactions', component: TransactionsComponent },
-  { path: 'credit-card-details', component: CreditCardDetailsComponent }
+  { path: 'credit-card-details/:card_number', component: CreditCardDetailsComponent }
 ];
 
