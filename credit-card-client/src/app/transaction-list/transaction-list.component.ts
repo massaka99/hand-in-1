@@ -12,7 +12,6 @@ export class TransactionListComponent {
   @Input() transactions: any[] = [];
   @Output() onRemoveTransaction = new EventEmitter<any>();
 
-  // Emit event to parent when removing a transaction
   remove(transaction: any) {
     this.onRemoveTransaction.emit(transaction);
   }

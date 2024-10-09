@@ -16,7 +16,6 @@ export class TransactionsComponent implements OnInit {
   filteredTransactions: any[] = [];
   filterCardNumber = '';
   
-  // For adding a new transaction
   newTransaction = {
     credit_card: '',
     amount: 0,
@@ -25,21 +24,20 @@ export class TransactionsComponent implements OnInit {
     date: ''
   };
   
-  isAddFormVisible = false; // Toggles the add form visibility
-  isListVisible = true; // Toggles the transaction list visibility
+  isAddFormVisible = false; 
+  isListVisible = true; 
 
   constructor(private creditCardService: CreditCardService) {}
 
   ngOnInit() {
-    this.loadTransactions(); // Load transactions when the component initializes
+    this.loadTransactions(); 
   }
 
-  // Load transactions from the backend
   loadTransactions() {
     this.creditCardService.getTransactions().subscribe({
       next: (data) => {
         this.transactions = data;
-        this.filteredTransactions = [...this.transactions]; // Optional: to allow filtering if needed
+        this.filteredTransactions = [...this.transactions]; 
       },
       error: (error) => {
         console.error('Error fetching transactions:', error);
@@ -47,13 +45,12 @@ export class TransactionsComponent implements OnInit {
     });
   }
 
-  // Add a new transaction
   addTransaction() {
     this.creditCardService.addTransaction(this.newTransaction).subscribe({
       next: (response) => {
-        this.transactions.push(response); // Add new transaction to the list
-        this.filterTransactions(); // Refresh the filtered list
-        this.isAddFormVisible = false; // Hide the form after adding
+        this.transactions.push(response); 
+        this.filterTransactions(); 
+        this.isAddFormVisible = false; 
       },
       error: (error) => {
         console.error('Error adding transaction:', error);
@@ -61,12 +58,11 @@ export class TransactionsComponent implements OnInit {
     });
   }
 
-  // Remove a transaction
   removeTransaction(transaction: any) {
     this.creditCardService.deleteTransaction(transaction.id).subscribe({
       next: () => {
         this.transactions = this.transactions.filter(t => t.id !== transaction.id);
-        this.filterTransactions();  // Apply filter after removal
+        this.filterTransactions();  
       },
       error: (error) => {
         console.error('Error removing transaction:', error);
@@ -76,16 +72,14 @@ export class TransactionsComponent implements OnInit {
 
   filterTransactions() {
     this.filteredTransactions = this.transactions.filter(t =>
-      t.credit_card.number.includes(this.filterCardNumber) // Assuming 'number' is the correct field
+      t.credit_card.number.includes(this.filterCardNumber)
     );
   }
 
-  // Toggle the visibility of the transaction list
   toggleTransactionList() {
     this.isListVisible = !this.isListVisible;
   }
 
-  // Toggle the add form visibility
   toggleAddForm() {
     this.isAddFormVisible = !this.isAddFormVisible;
   }

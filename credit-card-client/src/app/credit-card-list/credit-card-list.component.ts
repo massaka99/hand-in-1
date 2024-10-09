@@ -29,18 +29,14 @@ export class CreditcardlistComponent {
     }
   ];
 
-  // Declare the filterText property
   filterText: string = '';
 
   constructor(private router: Router) {}
 
-  // Implement the filterCards method (if you need to perform additional filtering logic)
   filterCards() {
-    // You can implement custom filtering logic if needed
-    // Currently, the ngFor will handle filtering via the pipe (if implemented)
+    
   }
 
-  // Implement the viewDetails method
   viewDetails(card_number: string) {
     this.router.navigate(['/creditcarddetails', card_number]);
   }

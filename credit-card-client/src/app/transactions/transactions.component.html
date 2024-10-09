@@ -1,8 +1,6 @@
 <div class="transactions-container">
     <h1>Transactions</h1>
 
-
-    <!-- Add Transaction Form -->
     <div *ngIf="isAddFormVisible" class="add-transaction-form">
         <h2>Add New Transaction</h2>
         <input type="text" placeholder="Credit Card" [(ngModel)]="newTransaction.credit_card">
@@ -13,7 +11,6 @@
         <button (click)="addTransaction()">Submit</button>
     </div>
 
-    <!-- Toggle Add Transaction Button -->
     <button class="add-transaction-btn">
         {{ isAddFormVisible ? 'Cancel' : 'Add Transaction' }}
     </button>
@@ -22,7 +19,6 @@
         {{ isListVisible ? 'Hide List' : 'Show List' }}
     </button>
 
-    <!-- Transaction List -->
     <app-transaction-list *ngIf="isListVisible" 
       [transactions]="filteredTransactions"
       (onRemoveTransaction)="removeTransaction($event)">
