@@ -1,1 +1,32 @@
-<p>credit-card-details works!</p>
+<div *ngIf="showModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" (click)="closeModal()">&times;</span>
+      <h2>Credit Card Details</h2>
+      
+      <!-- Display Credit Card Details -->
+      <p><strong>Card Number:</strong> {{ creditCardDetails.card_number }}</p>
+      <p><strong>Cardholder Name:</strong> {{ creditCardDetails.cardholder_name }}</p>
+      <p><strong>Issuer:</strong> {{ creditCardDetails.issuer }}</p>
+      <p><strong>Expiration Date:</strong> {{ creditCardDetails.expiration_date_month }}/{{ creditCardDetails.expiration_date_year }}</p>
+      <p><strong>CSC Code:</strong> {{ creditCardDetails.csc_code }}</p>
+  
+      <button class="remove-btn" (click)="removeCard()">Remove Card</button>
+      <button class="close-btn" (click)="closeModal()">Close</button>
+  
+      <!-- Optional: Display transactions -->
+      <div *ngIf="transactions.length > 0">
+        <h3>Transactions</h3>
+        <ul class="transaction-list">
+          <li *ngFor="let transaction of transactions">
+            {{ transaction.date }} - {{ transaction.amount }}
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Message for no transactions -->
+      <div *ngIf="transactions.length === 0">
+        <p>No transactions found for this card.</p>
+      </div>
+    </div>
+  </div>
+  
