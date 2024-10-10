@@ -196,3 +196,21 @@ h1 {
 .add-transaction-form button:hover {
   background-color: #005f9e;
 }
+
+
+.hide-list-btn {
+  display: block;
+  margin: 30px auto;
+  padding: 15px 30px;
+  background-color: #0070ba;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.hide-list-btn:hover {
+  background-color: #003087;
+}

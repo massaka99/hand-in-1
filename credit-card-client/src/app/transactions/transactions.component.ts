@@ -25,8 +25,10 @@ export class TransactionsComponent implements OnInit {
   };
   
   isAddFormVisible = false; 
-  isListVisible = true; 
-
+  isListVisible = false;
+  transactionsLoaded = false; 
+  
+  
   constructor(private creditCardService: CreditCardService) {}
 
   ngOnInit() {
@@ -72,12 +74,17 @@ export class TransactionsComponent implements OnInit {
 
   filterTransactions() {
     this.filteredTransactions = this.transactions.filter(t =>
-      t.credit_card.number.includes(this.filterCardNumber)
+      t.credit_card && t.credit_card.number && t.credit_card.number.includes(this.filterCardNumber)
     );
-  }
+  }  
 
   toggleTransactionList() {
     this.isListVisible = !this.isListVisible;
+    
+    if (this.isListVisible && !this.transactionsLoaded) {
+      this.loadTransactions();
+      this.transactionsLoaded = true;
+    }
   }
 
   toggleAddForm() {
