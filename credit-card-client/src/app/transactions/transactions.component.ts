@@ -28,7 +28,6 @@ export class TransactionsComponent implements OnInit {
   isListVisible = false;
   transactionsLoaded = false; 
   
-  
   constructor(private creditCardService: CreditCardService) {}
 
   ngOnInit() {
@@ -50,9 +49,11 @@ export class TransactionsComponent implements OnInit {
   addTransaction() {
     this.creditCardService.addTransaction(this.newTransaction).subscribe({
       next: (response) => {
-        this.transactions.push(response); 
-        this.filterTransactions(); 
-        this.isAddFormVisible = false; 
+        window.alert('Transaction added successfully!');
+        
+        this.loadTransactions();
+        
+        this.isAddFormVisible = false;
       },
       error: (error) => {
         console.error('Error adding transaction:', error);
@@ -63,8 +64,9 @@ export class TransactionsComponent implements OnInit {
   removeTransaction(transaction: any) {
     this.creditCardService.deleteTransaction(transaction.id).subscribe({
       next: () => {
-        this.transactions = this.transactions.filter(t => t.id !== transaction.id);
-        this.filterTransactions();  
+        window.alert('Transaction removed successfully!');
+        
+        this.loadTransactions();
       },
       error: (error) => {
         console.error('Error removing transaction:', error);
@@ -89,5 +91,23 @@ export class TransactionsComponent implements OnInit {
 
   toggleAddForm() {
     this.isAddFormVisible = !this.isAddFormVisible;
+  }
+
+  filterTransactionsCard(targetCardNumber: string) {
+    const trimmedTargetCardNumber = targetCardNumber.trim(); 
+    
+    if (!trimmedTargetCardNumber) {
+      this.filteredTransactions = [...this.transactions];
+    } else {
+      this.filteredTransactions = this.transactions.filter((transaction) => {
+        return (
+          transaction.credit_card &&
+          transaction.credit_card.card_number &&
+          String(transaction.credit_card.card_number).trim() === trimmedTargetCardNumber 
+        );
+      });
+    }
+  
+    console.log(`Filtered transactions for card number ${trimmedTargetCardNumber}:`, this.filteredTransactions);
   }
 }
