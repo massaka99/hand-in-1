@@ -4,7 +4,7 @@ import { CreditcardlistComponent } from './credit-card-list/credit-card-list.com
 import { AddcreditcardComponent } from './add-credit-card/add-credit-card.component';
 import { TransactionListComponent } from './transaction-list/transaction-list.component';
 import { TransactionsComponent } from './transactions/transactions.component';
-import { CreditCardDetailsComponent } from './credit-card-details/credit-card-details.component';
+
 
 export const routes: Routes = [
   { path: '', component: HomeComponent }, 
@@ -12,6 +12,6 @@ export const routes: Routes = [
   { path: 'add-credit-card', component: AddcreditcardComponent },
   { path: 'transaction-list', component: TransactionListComponent },
   { path: 'transactions', component: TransactionsComponent },
-  { path: 'credit-card-details/:card_number', component: CreditCardDetailsComponent }
+ 
 ];
 
