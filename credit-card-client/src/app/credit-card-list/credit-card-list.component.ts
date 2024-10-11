@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CreditCardService } from '../services/services/credit-card.service';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-creditcardlist',
@@ -10,26 +11,27 @@ import { CreditCardService } from '../services/services/credit-card.service';
   standalone: true,
   imports: [CommonModule, FormsModule],
   styleUrls: ['./credit-card-list.component.css'],
+  providers: [DecimalPipe],
 })
 export class CreditcardlistComponent implements OnInit {
-  creditCards: any[] = []; // Cards fetched from backend
-  filteredCards: any[] = []; // Cards after filtering
+  creditCards: any[] = []; 
+  filteredCards: any[] = [];
   filterText: string = '';
-  showModal: boolean = false; // Modal state
-  creditCardDetails: any = {}; // Credit card details for modal
-  transactions: any[] = []; // All transactions
-  filteredTransactions: any[] = []; // Transactions after filtering by card
-  filterCardNumber: string = ''; // Filter for transactions
+  showModal: boolean = false;
+  creditCardDetails: any = {}; 
+  transactions: any[] = []; 
+  filteredTransactions: any[] = []; 
+  filterCardNumber: string = ''; 
 
   constructor(
     private router: Router,
     private creditCardService: CreditCardService,
-    private cdr: ChangeDetectorRef // Inject ChangeDetectorRef
+    private cdr: ChangeDetectorRef 
   ) {}
 
   ngOnInit() {
     this.loadCreditCards();
-    this.loadTransactions(); // Load all transactions
+    this.loadTransactions(); 
   }
 
   loadCreditCards() {
@@ -44,30 +46,32 @@ export class CreditcardlistComponent implements OnInit {
     });
   }
 
-  // Fetch transactions associated with a specific card number
   loadTransactionsForCard(card_number: string) {
+    const trimmedCardNumber = card_number.trim();
     this.filteredTransactions = this.transactions.filter(
-      (t) => t.credit_card && t.credit_card.number === card_number
+      (t) =>
+        t.credit_card &&
+        t.credit_card.card_number &&
+        String(t.credit_card.card_number).trim() === trimmedCardNumber
     );
     console.log('Transactions for card:', this.filteredTransactions);
   }
 
-  // Accept card number as argument
   GetSpecificCard(card_number: string) {
     this.creditCardService.getCreditCards().subscribe({
       next: (cards) => {
-        const targetCardNumber = String(card_number);
-        const foundCard = cards.find((card) => String(card.card_number) === targetCardNumber);
+        const targetCardNumber = String(card_number).trim(); 
+        const foundCard = cards.find(
+          (card) => String(card.card_number).trim() === targetCardNumber 
+        );
   
         if (foundCard) {
           this.creditCardDetails = foundCard;
           console.log('Fetched card details:', this.creditCardDetails);
 
-          // After fetching card details, load transactions for that card
-          this.filterTransactions(card_number);
-
+          this.filterTransactions(targetCardNumber);
           this.showModal = true;
-          this.cdr.detectChanges(); // Manually trigger change detection
+          this.cdr.detectChanges(); 
           console.log('Show modal:', this.showModal);
         } else {
           console.error('Card not found');
@@ -79,7 +83,6 @@ export class CreditcardlistComponent implements OnInit {
     });
   }
 
-  // Load all transactions from the backend
   loadTransactions() {
     this.creditCardService.getTransactions().subscribe({
       next: (data) => {
@@ -92,19 +95,17 @@ export class CreditcardlistComponent implements OnInit {
     });
   }
 
-// Filter transactions by card number
-filterTransactions(targetCardNumber: string) {
-  const targetNumber = String(targetCardNumber);
-
-  this.filteredTransactions = this.transactions.filter(
-    (transaction) => transaction.credit_card && String(transaction.credit_card.number) === targetNumber
-  );
-
-  console.log('fil trans',this.filteredTransactions);
-  console.log('target', targetCardNumber); 
-}
-
-  
+  filterTransactions(targetCardNumber: string) {
+    const trimmedTargetCardNumber = targetCardNumber.trim(); 
+    this.filteredTransactions = this.transactions.filter((transaction) => {
+      return (
+        transaction.credit_card &&
+        transaction.credit_card.card_number &&
+        String(transaction.credit_card.card_number).trim() === trimmedTargetCardNumber 
+      );
+    });
+    console.log(`Filtered transactions for card number ${trimmedTargetCardNumber}:`, this.filteredTransactions);
+  }
 
   filterCards() {
     const lowerCaseFilter = this.filterText.toLowerCase();
@@ -115,19 +116,18 @@ filterTransactions(targetCardNumber: string) {
 
   onCardClick(card_number: string) {
     this.GetSpecificCard(card_number);
-    this.loadTransactionsForCard(card_number);
+    this.loadTransactionsForCard(card_number); 
   }
 
   closeModal() {
-    this.showModal = false; // Hide modal on close
-    this.cdr.detectChanges(); // Manually trigger change detection after closing
+    this.showModal = false; 
+    this.cdr.detectChanges(); 
   }
 
   DeleteCreditCard(card_number: string) {
     this.creditCardService.deleteCreditCard(card_number).subscribe({
       next: () => {
         console.log('Card removed:', card_number);
-        // Reload cards after removing the card
         this.loadCreditCards();
       },
       error: (error) => {
@@ -144,15 +144,12 @@ filterTransactions(targetCardNumber: string) {
 
     const cardNumber = this.creditCardDetails.card_number;
 
-    // Call the delete method and handle the list reloading once it's successful
     this.creditCardService.deleteCreditCard(cardNumber).subscribe({
       next: () => {
         console.log('Card removed:', cardNumber);
 
-        // Reload the list of cards after the card is successfully deleted
         this.loadCreditCards();
 
-        // Close the modal after successful deletion
         this.closeModal();
       },
       error: (error) => {

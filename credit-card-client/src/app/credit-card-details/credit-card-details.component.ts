@@ -38,7 +38,7 @@ export class CreditCardDetailsComponent implements OnInit {
 
         for (let i = 0; i < cards.length; i++) {
           const card = cards[i];
-          const cardNumberAsString = String(card.card_number);
+          const cardNumberAsString  = String(card.card_number);
 
           if (cardNumberAsString === targetCardNumber) {
             foundCard = card;

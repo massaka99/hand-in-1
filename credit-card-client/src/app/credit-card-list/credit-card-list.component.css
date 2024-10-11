@@ -29,7 +29,7 @@ h2 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 10px;
-  }
+}
 
 .filter-section {
     display: flex;
@@ -87,71 +87,77 @@ h2 {
 }
 
 .modal {
-    display: block; /* Make the modal visible */
+    display: block;
     position: fixed;
-    z-index: 1; /* Ensure it appears above other content */
+    z-index: 1;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {
-    background-color: #fff; /* White background for modal content */
-    border-radius: 8px; /* Rounded corners for a smoother appearance */
-    margin: auto; /* Center the modal */
-    padding: 20px; /* Spacing within the modal */
-    border: 1px solid #888; /* Border color */
-    width: 80%; /* Modal width */
-    justify-content: center;
-    align-items: center;
-    max-width: 500px; /* Maximum width to prevent excessive stretching */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-    position: relative; /* Position relative for inner elements */
-    top: 50%; /* Start at the vertical center */
-    transform: translateY(-50%); /* Move up to center it vertically */
+    background-color: #fff;
+    border-radius: 8px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .close-btn {
-    color: #aaa; /* Close button color */
-    float: right; /* Align to the right */
-    font-size: 28px; /* Font size */
-    font-weight: bold; /* Make it bold */
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
 
 .close-btn:hover,
 .close-btn:focus {
-    color: #000; /* Change color on hover */
-    text-decoration: none; /* Remove underline */
-    cursor: pointer; /* Change cursor to pointer */
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .remove-btn {
-    background-color: red; /* Red background for remove button */
-    color: white; /* White text */
-    padding: 10px; /* Padding for button */
-    border: none; /* Remove border */
-    cursor: pointer; /* Pointer cursor */
-    margin-bottom: 20px; /* Space below the button */
-    border-radius: 4px; /* Rounded corners */
-    transition: background-color 0.3s; /* Smooth background color transition */
+    background-color: red;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
 }
 
 .remove-btn:hover {
-    background-color: darkred; /* Darker red on hover */
+    background-color: darkred;
+}
+
+.transactions-section {
+    margin-top: 20px;
+}
+
+.scrollable-transactions {
+    max-height: 200px; 
+    overflow-y: auto;
+    border-top: 1px solid #ddd; 
+    padding-top: 10px; 
 }
 
 .transaction-list {
-    list-style-type: none; /* Remove list bullets */
-    padding: 0; /* Remove padding */
+    list-style-type: none; 
+    padding: 0;
 }
 
 .transaction-list li {
-    border-bottom: 1px solid #ddd; /* Divider between transactions */
-    padding: 10px 0; /* Vertical spacing for each item */
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
 }
-
-
-
