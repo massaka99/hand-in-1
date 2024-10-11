@@ -11,12 +11,12 @@
     </thead>
     <tbody>
         <tr *ngFor="let transaction of transactions">
-            <td>{{ transaction.credit_card.card_number }}</td> 
+            <td>{{ transaction.credit_card?.card_number }}</td> 
             <td>{{ transaction.amount }}</td>
             <td>{{ transaction.currency }}</td>
             <td>{{ transaction.comment }}</td>
             <td>{{ transaction.date | date }}</td>
             <td><button (click)="remove(transaction)">Remove</button></td>
-        </tr>
+        </tr>        
     </tbody>
 </table>

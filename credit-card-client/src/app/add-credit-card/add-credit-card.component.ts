@@ -2,12 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CreditCardService } from '../services/services/credit-card.service';
-import { HttpClientModule } from '@angular/common/http'; 
 
 @Component({
   selector: 'app-addcredit',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, HttpClientModule], 
+  imports: [ReactiveFormsModule, CommonModule], 
   templateUrl: './add-credit-card.component.html',
   styleUrls: ['./add-credit-card.component.css'],
   providers: [CreditCardService]  

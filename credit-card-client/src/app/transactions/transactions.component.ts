@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TransactionListComponent } from '../transaction-list/transaction-list.component'; 
+import { TransactionListComponent } from './transaction-list.component'; 
 import { CreditCardService } from '../services/services/credit-card.service';
 
 @Component({
@@ -15,19 +15,20 @@ export class TransactionsComponent implements OnInit {
   transactions: any[] = [];
   filteredTransactions: any[] = [];
   filterCardNumber = '';
-  
+
   newTransaction = {
-    credit_card: '',
+    credit_card: { card_number: '' }, 
     amount: 0,
     currency: '',
     comment: '',
     date: ''
   };
   
+
   isAddFormVisible = false; 
   isListVisible = false;
   transactionsLoaded = false; 
-  
+
   constructor(private creditCardService: CreditCardService) {}
 
   ngOnInit() {

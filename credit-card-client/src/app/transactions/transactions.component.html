@@ -3,7 +3,7 @@
 
   <div *ngIf="isAddFormVisible" class="add-transaction-form">
     <h2>Add New Transaction</h2>
-    <input type="text" placeholder="Credit Card" [(ngModel)]="newTransaction.credit_card">
+    <input type="text" placeholder="Credit Card" [(ngModel)]="newTransaction.credit_card.card_number">
     <input type="number" placeholder="Amount" [(ngModel)]="newTransaction.amount">
     <input type="text" placeholder="Currency" [(ngModel)]="newTransaction.currency">
     <input type="text" placeholder="Comment" [(ngModel)]="newTransaction.comment">

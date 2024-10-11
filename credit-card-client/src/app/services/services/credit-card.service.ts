@@ -26,17 +26,14 @@ export class CreditCardService {
     return this.http.post(`${this.apiUrl}/cards`, cardData);
   }
 
-  // Get all cards
   getCreditCards(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/cards`);
   }
 
-  // Delete a card using the card number
   deleteCreditCard(card_number: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/cards/${card_number}`);
   }
 
-  // Get a card by card number by filtering all cards
   getCardByNumber(card_number: string): Observable<any> {
     return this.getCreditCards().pipe(
       map(cards => cards.find(card => card.card_number === card_number))
